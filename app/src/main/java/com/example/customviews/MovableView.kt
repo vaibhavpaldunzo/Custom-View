@@ -4,9 +4,7 @@ package com.example.customviews
 import android.util.Log
 import android.view.View
 
-open class MovableView  {
-
-    lateinit var view: View
+open class MovableView(var view : View) {
 
 
     fun move(dx: Float, dy: Float){
@@ -16,6 +14,7 @@ open class MovableView  {
         view.animate().xBy(dx).yBy(dy).setDuration(0).start()
 
     }
+
 
     private fun showMsg(msg:String) {
         Log.e("MCV"," $msg")

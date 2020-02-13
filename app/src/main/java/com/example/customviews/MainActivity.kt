@@ -29,12 +29,13 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
         textView.setOnTouchListener(this)
 
+        imageView.setOnTouchListener(this)
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         showMsg("Frame Layout start ----> ${frameLayout.width}, ${frameLayout.height}")
 
-
+        showMsg(v.toString())
 
         when(event!!.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
@@ -46,12 +47,10 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
                 var dx = event.rawX - prevTouchX
                 var dy = event.rawY - prevTouchY
 
-                if (v is TextView) {
-                    var customImageView = CustomImageView(v)
+                var movableView = MovableView(v!!)
 
-                    if (insideScreen(v.x + dx, v.y + dy, v.x + v.width + dx, v.y + v.height + dy))
-                        customImageView.move(dx, dy)
-                }
+                if (insideScreen(v.x + dx, v.y + dy, v.x + v.width + dx, v.y + v.height + dy))
+                    movableView.move(dx, dy)
 
                 prevTouchX = event.rawX
                 prevTouchY = event.rawY
